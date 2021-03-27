@@ -1,15 +1,20 @@
+/* Game States
+"WIN" - Player robot has defeated all enemy-robots
+    * Fight all enemy-robots
+    * Defeat each enemy-robot
+"LOSE" - Player robot's health is zero or less
+ */
+
 var playerName = window.prompt("what is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-console.log(playerName, playerAttack, playerHealth);
-
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-var fight = function () {
+var fight = function(enemyName) {
   // Alert players that they are starting the round
   window.alert("The fight has begun!");
 
@@ -23,13 +28,13 @@ var fight = function () {
       enemyHealth = enemyHealth - playerAttack;
       console.log(
         playerName +
-          " attacked " +
-          enemyName +
-          ". " +
-          enemyName +
-          " now has " +
-          enemyHealth +
-          " health remaining."
+        " attacked " +
+        enemyName +
+        ". " +
+        enemyName +
+        " now has " +
+        enemyHealth +
+        " health remaining."
       );
 
       // check enemy's health
@@ -43,13 +48,13 @@ var fight = function () {
       playerHealth = playerHealth - enemyAttack;
       console.log(
         enemyName +
-          " attacked " +
-          playerName +
-          ". " +
-          playerName +
-          " now has " +
-          playerHealth +
-          " health remaining."
+        " attacked " +
+        playerName +
+        ". " +
+        playerName +
+        " now has " +
+        playerHealth +
+        " health remaining."
       );
 
       // check player's health
@@ -67,20 +72,21 @@ var fight = function () {
 
       if (confirmSkip) {
         window.alert(playerName + " has chosen to skip the fight. Goodbye!");
-        playerMoney = playerMoney -2;
+        playerMoney = playerMoney - 2;
         console.log(playerMoney + " money left ");
-      } 
-      else {
-        fight()
+      } else {
+        fight();
       }
-
-      
-    } 
-    
-    else {
+    } else {
       window.alert("You need to choose a valid option. Try again!");
     }
   }
-};
+}
 
-fight();
+for (var i = 0; i < enemyNames.length; i++) {
+  console.log(enemyNames[i]);
+  console.log(i);
+  console.log(enemyNames[i] + " is at " + i + " index");
+  fight(enemyNames[i]);
+}
+
